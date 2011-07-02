@@ -1,0 +1,21 @@
+- title "Design"
+
+= form_for(@store, :url => :design, :method => :put, :html => { :multipart => true }) do |f|
+  %h2 Farbschema
+  %p
+    Ändern Sie hier das Aussehen ihres Shops. Dazu stehen Ihnen mehrere Farbschemata zur Auswahl. Wählen Sie eins aus und klicken Sie auf "Speichern".
+  .inputs= f.association :theme, :include_blank => false, :label => false
+
+  %h2 Kopfzeile
+  %p
+    Sie können in die Kopfzeile eine Grafik einfügen. Im Moment steht dort #{current_store.name} als
+    einfacher Schriftzug. Erlaubt sind die Formate Png, Jpg und Gif.
+  %p
+    Durch klicken auf den folgenden Knopf können Sie einen Bilddatei von Ihrem Computer hochladen.
+  .inputs
+    = f.input :header, :label => false
+    - if @store.header?
+      = image_tag @store.header.url(:thumb)
+      = f.input(:delete_header, :as => :boolean)
+
+  .actions= f.button :submit

@@ -1,0 +1,8 @@
+#slogan= link_to "„Die Speisekarten Deutschlands bei uns - Restaurants, Lieferdienste, Kneipen und Bars.“", page_path('about')
+#search
+  = form_tag('', :method => :get, :class => "search" ) do |f|
+    %h3
+      Wo?
+      %span Ihre PLZ oder Ort
+    = text_field_tag :q, params[:q], :class => 'focus'
+    = submit_tag "&rang;".html_safe, :append => true

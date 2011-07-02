@@ -1,0 +1,33 @@
+-title "%{name}", :name => @cart_article.name_with_variant
+
+%table.list
+  %tr
+    %th.quantity
+    %th.name_and_extras Name
+    %th.price Einzelpreis
+    %th.price Gesamtpreis
+  %tr
+    %td.quantity= @cart_article.quantity
+    %td.name_and_extras
+      = @cart_article.name
+      = link_to @cart_article.variant_name, [:cycle,@cart_article], :method => :put, :remote => true
+
+    %td.price= to_money @cart_article.price
+    %td.price= to_money @cart_article.total_price
+  %tbody#cart_extras
+    - @cart_article.cart_extras.each do |cart_extra|
+      %tr[cart_extra]
+        %td= link_to image_tag('trash.png'), [@cart_article,cart_extra], :method => :delete, :remote => true
+        %td= link_to cart_extra.name, [@cart_article,cart_extra], :method => :delete, :remote => true
+        %td.price= to_money cart_extra.price
+        %td
+
+%p &nbsp;
+%h2 Extras
+%table
+  - @cart_article.category.extras.in_groups_of(3,Article.new).each do |extra_row|
+    %tr
+      - extra_row.each do |extra|
+        %td= link_to extra.name, cart_article_cart_extras_path(@cart_article, :extra =>{:id => extra.id}), :method => :post, :remote => true
+        %td= to_money(extra.price(@cart_article.variant))
+

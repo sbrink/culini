@@ -1,0 +1,99 @@
+label
+  font-weight: bold
+  &.string, &.float, &.decimal, &.email, &.text, &.email, &.file, &.select, &.time, &.password, &.tel
+    display: block
+    font-weight: bold
+  &.boolean
+    padding: 8px
+  &.required:after
+    content: ' *'
+    color: #cc0000
+
+input
+  margin-bottom: 8px
+  &[type=text], &[type=email], &[type=password]
+    +border3d(#999999)
+    padding: 3px
+    &:focus
+      border: 1px solid #0000ff
+
+textarea
+  border: 1px solid #999
+  padding: 3px
+  width: 100%
+  &:focus
+    border: 1px solid #0000ff
+    background-color: #efefff
+  &.small
+    height: 4em
+  &.middle
+    height: 4em
+
+checkbox
+  padding: 3px
+  margin: 8px
+
+select
+  border: 1px solid #bbb
+  background-color: #fefefe
+  +border-radius(3px)
+
+span.error
+  position: absolute
+  margin: 1px
+  visibility: hidden
+  background-color: #ffeeee
+  color: #bb0000
+  padding: 1px 4px
+
+.field_with_errors
+  display: inline
+  margin: 0
+  padding: 0
+  color: #bb0000
+  input
+    background: #fff9f9
+    +border3d(#ebaaaa)
+
+
+.inputs, .actions
+  position: relative
+  margin-bottom: 16px
+  //width: 100%
+  //overflow: hidden
+
+.button
+  +border-radius(4px)
+  padding: 6px 16px
+  font-family: helvetica,arial,freesans,clean,sans-serif
+  font-weight: bold
+  font-size: 11px
+
+  color: #333 !important
+  border: 1px solid #bbbbbb !important
+  border-left: 1px solid #cfcfcf !important
+  border-top: 1px solid #cfcfcf !important
+  
+  background: -webkit-gradient(linear,0% 0,0% 100%,from(#ffffff),to(#E1E1E1))
+  background: -moz-linear-gradient(-90deg,#ffffff,#E1E1E1)
+  -webkit-font-smoothing: subpixel-antialiased !important
+  text-decoration: none
+  text-shadow: 1px 1px 0 white
+  &:hover
+    border: 1px solid #b6b6b6 !important
+    background: -webkit-gradient(linear,0% 0,0% 100%,from(#ffffff),to(#dddddd))
+    background: -moz-linear-gradient(-90deg,#ffffff,#dddddd)
+    text-decoration: none
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2)
+
+.new
+  color: #fff !important
+  border: 1px solid #008800 !important
+  text-shadow: none
+  background: -webkit-gradient(linear,0% 0,0% 100%,from(#009900),to(#007700))
+  background: -moz-linear-gradient(-90deg,#009900,#007700)
+  background-color: #009900 !important
+  &:hover
+    border: 1px solid #00aa00 !important
+    background: -webkit-gradient(linear,0% 0,0% 100%,from(#00aa00),to(#007700))
+    background: -moz-linear-gradient(-90deg,#00aa00,#007700)

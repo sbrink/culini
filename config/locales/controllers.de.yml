@@ -1,0 +1,97 @@
+de:
+  controllers:
+    roots:
+      title:
+        index: Startseite
+
+    articles:
+      title:
+        new: "Neuer Artikel in %{category_name}"
+        edit: "Artikel %{name} bearbeiten"
+
+    categories:
+      title:
+        index: "%{name}"
+        overview: "Artikelverwaltung"
+        new: "Neue Kategorie anlegen"
+        show: "%{name}"
+        edit: "Kategorie %{name} bearbeiten"
+
+    checkouts:
+      title:
+        show: "Bestellung abschließen"
+        new:  "Bestellung abschließen"
+        empty: "Warenkorb leer"
+
+    delayed_jobs:
+      title:
+        index: "Delayed Jobs Übersicht"
+        show: "Delayed Job"
+
+    delivery_zones:
+      title:
+        show: "Liefergebiet"
+
+    designs:
+      title:
+        show: "Design wählen"
+      flash:
+        update:  "Das Design wurde erfolgreich geändert."
+
+    extras:
+      title:
+        index: "Extras von %{category_name}"
+        new: "Neues Extra"
+        edit: "Extra %{name} bearbeiten"
+
+    infos:
+      title:
+        show: "Impressum"
+        edit: "Shopdaten verändern"
+
+    orders:
+      title:
+        index: "Bestellungen"
+        show: "Bestellung vom %{order_at}"
+
+    pages:
+      title:
+        index: Seiten
+        new: Neue Seite
+
+    user_registrations:
+      title:
+        new: "Registrierung"
+        edit: "Mein Konto"
+
+    registrations:
+      title:
+        new: "Registrierung"
+        edit: "Mein Konto"
+
+    reservations:
+      title:
+        index: "Reservierungen"
+        new: "Neue Reservierung"
+
+    store_hours:
+      title:
+        index: "Öffnungszeiten festlegen"
+        new: "Neue Öffnungszeit"
+        edit: "Öffnungzeit bearbeiten"
+
+    stores:
+      title:
+        new: "Eigenen Shop anlegen"
+      flash:
+        create:  "Ihr Shop wurde erfolgreich erstellt."
+
+    user_addresses:
+      title:
+        index: "Lieferadressen"
+        new: "Neue Adresse"
+        edit: "Adresse bearbeiten"
+
+    users:
+      title:
+        index: "Benutzerverwaltung"

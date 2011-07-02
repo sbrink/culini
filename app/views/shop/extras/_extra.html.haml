@@ -1,0 +1,8 @@
+%tr[extra]{ :class => cycle(:even,:odd)}
+  %td.code= extra.code
+  %td
+    = link_to extra.name, [:edit,extra.category,extra], :remote => true
+    &nbsp;
+    = link_to image_tag('trash.png'), [extra.category,extra], :confirm => 'Sind Sie sicher?', :method => :delete, :remote => true
+  - extra.extra_variants.each do |extra_variant|
+    %td.price= to_money(extra_variant.price)

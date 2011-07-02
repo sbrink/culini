@@ -1,0 +1,35 @@
+%td.code
+%td.name{ :colspan => 2+@extra.extra_variants.size}
+  = form_for([@category, @extra], :remote => true) do |f|
+    .inputs
+
+      = f.input :code, :input_html => { :tabindex => 1 }
+      = f.input :name, :hint => "z.B. Paprika", :input_html => { :tabindex => 2, :class => 'focus' }
+
+
+    .inputs
+      %strong Preis: &nbsp; &nbsp;
+      - if @extra.category.category_variants.size >= 1
+        = @extra.category.category_variants[0].name
+        = f.text_field :variant_1_price, :size => 7, :tabindex => 4
+        &nbsp;
+      - if @extra.category.category_variants.size >= 2
+        = @extra.category.category_variants[1].name
+        = f.text_field :variant_2_price, :size => 7, :tabindex => 5
+        &nbsp;
+      - if @extra.category.category_variants.size >= 3
+        = @extra.category.category_variants[2].name
+        = f.text_field :variant_3_price, :size => 7, :tabindex => 6
+        &nbsp;
+      - if @extra.category.category_variants.size >= 4
+        = @extra.category.category_variants[3].name
+        = f.text_field :variant_4_price, :size => 7, :tabindex => 7
+
+
+      .actions
+        = f.button :submit, :tabindex => 8
+        oder
+        - if @extra.new_record?
+          = link_to_function "Abbruch", "$('##{dom_id(@category,"new_extra")}').hide();", :class => "cancel"
+        - else
+          = link_to "Abbruch", [@extra.category, @extra], :remote => true, :class => 'cancel'

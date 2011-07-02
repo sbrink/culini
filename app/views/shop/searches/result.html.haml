@@ -1,0 +1,35 @@
+= form_tag('', :method => :get, :class => "search" ) do |f|
+  PLZ / Ort:
+  = text_field_tag :q, params[:q], :maxlength => 100, :style => "width: 350px;"
+  = submit_tag "&rang;".html_safe
+%p &nbsp;
+
+- if params[:reservation] == "true"
+  %p
+    Sie filtern nach Gastronomien mit
+    %strong Tischplatzreservierung
+    = link_to "Alle anzeigen", :q => params[:q]
+
+%h3 Suchergebnisse
+
+%table
+  %tr
+    %th
+    %th Name
+    %th Öffnungszeiten
+    %th
+    %th Tischreservierung
+  - @stores.each do |store|
+    %tr{ :class => store.public_access? ? nil : "deactivated"}
+      %td.icon
+        - if store.header?
+          = link_to image_tag(store.header.url(:thumb)), first_categories_path(:store_id => store)
+      %td
+        = link_to store.name, categories_path(:store_id => store)
+        %br
+        = store.street
+        %br
+        = store.address(:postcode_city)
+      %td= store.store_hours.opening_from_till_on(Time.now.strftime("%A").downcase).join('<br>').html_safe
+      %td= store.tags.map(&:name).join(', ')
+      %td= image_tag('accept.png') if store.reservations_enabled?

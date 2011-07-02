@@ -1,0 +1,6 @@
+- if @extra.valid?
+  ccc = $('##{dom_id(@extra)}').attr('class');
+  $('##{dom_id(@extra)}').replaceWith('#{escape_javascript(render(@extra))}');
+  $('##{dom_id(@extra)}').removeClass("even").addClass(ccc);
+- else
+  $('##{dom_id(@extra)}').html('#{escape_javascript(render("form"))}')

@@ -1,0 +1,23 @@
+%p &nbsp;
+%p &nbsp;
+
+#order_status{ :"data-url" => url_for([:status,@order])} fds
+
+- if [:new,:sending].include? @order.status
+  %center
+    Ihre Bestellung wird übermittelt
+    %br=image_tag('ajax_loader.gif')
+
+- if @order.status == :success
+  %center
+    %h3 Ihre Bestellung wurde erfolgreich an #{@order.store.name} übertragen.
+
+- if @order.status == :failed
+  %center
+    %h3 Ihre Bestellung konnte nicht an #{@order.store.name} weitergeleitet werden.
+    Bitte rufen Sie #{@order.store.name} unter #{@order.store.phone} an.
+
+%p &nbsp;
+%p &nbsp;
+%p &nbsp;
+%p &nbsp;

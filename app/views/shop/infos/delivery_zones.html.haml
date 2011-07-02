@@ -1,0 +1,23 @@
+- title "Delivery zones"
+
+%p.info Geben Sie hier den Lieferradius um ihre Gastronomie an. Nachdem Sie Speichern geklickt haben, sehen Sie, welche Postleitzahlen/Städte der Lieferradius einschließt.
+
+= form_for(@store, :url => :delivery_zones) do |f|
+  .inputs
+    = f.input :delivery_radius, :span => 3
+    = f.button :submit
+
+%h2 Postleitzahlen/Städte im Lieferradius
+%table.list
+  %tr
+    %th PLZ
+    %th Stadt
+    %th Stadtteil
+  - @store.delivery_zones.includes(:zone).each do |delivery_zone|
+    %tr[delivery_zone]{ :class => cycle(:even,:odd)}
+      /%td= delivery_zone.active
+      %td= delivery_zone.postcode
+      %td= delivery_zone.city
+      %td= delivery_zone.area
+
+

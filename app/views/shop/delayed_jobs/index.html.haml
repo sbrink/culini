@@ -1,0 +1,20 @@
+- title "Delayed jobs"
+
+%table.list
+  %tr
+    %th.icon
+      %th Object
+    %th Run?
+    %th Priorität
+    %th Erstellt
+    %th.icon
+  - @delayed_jobs.each do |delayed_job|
+    %tr
+      %td.icon
+        = image_tag('cross.png') if delayed_job.last_error
+        = image_tag('cog.png') if delayed_job.locked_at
+      %td= link_to delayed_job.title, delayed_job
+      %td= (delayed_job.run_at < Time.now)? "asap!" : delayed_job.run_at.to_s(:short)
+      %td= delayed_job.priority
+      %td= delayed_job.created_at
+      %td.icon= link_to image_tag('trash.png'), delayed_job, :confirm => 'Are you sure?', :method => :delete

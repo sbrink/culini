@@ -1,0 +1,31 @@
+- title "%{name}", :name => "Verwaltung"
+
+.box_full
+  %h2 Shop
+  %p
+    Ihr Shop ist #{current_store.public_access? ? "" : "<b>nicht</b>".html_safe} öffentlich erreichbar.
+    = link_to "Hier ändern", :edit_info
+
+.box_half
+  %h2 Kategorien und Artikel der Speisekarte
+  %p
+    - if current_store.categories.any?
+      Sie haben #{current_store.categories.size} Kategorien. Erstellen Sie eine Weitere
+      = link_to "hier", new_category_path(:only => [:name,:description]), :remote => true
+    - else
+      = image_tag("exclamation.png")
+      Sie haben noch keine Kategorie angelegt. Erstellen Sie ihre Erste
+      = link_to "hier", new_category_path(:only => [:name,:description]), :remote => true
+
+
+
+.box_half
+  %h2 Öffnungszeiten
+  %p
+    - if current_store.store_hours.any?
+      Sie haben #{current_store.store_hours.size} Öffnungszeiten. Erstellen Sie eine Weitere
+      = link_to "hier", :store_hours
+    - else
+      = image_tag("exclamation.png")
+      Sie haben noch keine Öffnungszeiten angelegt. Erstellen Sie ihre Erste
+      = link_to "hier", :store_hours

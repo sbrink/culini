@@ -1,0 +1,32 @@
+
+- if category.image?
+  .category_image
+    - if user_is_admin?
+      = link_to image_tag(category.image.url), edit_category_path(category,:only => [:category_image]), :remote => true
+      %div bearbeiten
+    - else
+      = image_tag(category.image.url)
+- else
+  - if user_is_admin?
+    .category_image
+      = link_to "Dieser Kategorie ein Bild hinzufügen", edit_category_path(category,:only => [:category_image]), :remote => true, :class => "new_image"
+
+-  if category.articles.any? || user_is_admin?
+  %table{ :"data-sortable" => "categories/#{category.id}/articles", :class => user_is_admin? ? "sortable" : nil}
+    %thead
+      %tr
+        %th.code
+        %th= textilized_lite(category.description)
+        - category.category_variants.each do |category_variant|
+          %th.price
+            .name= category_variant.name
+            .description= category_variant.description
+    %tbody[category,"articles"]= render category.articles.ordered
+    %tbody[category,"new_article"]
+  - if user_is_admin?
+    .actions
+      = link_to 'Neuer Artikel', [:new,category,:article], :remote => true, :class => "button new", :accesskey => 'n'
+      - if category.articles.any?
+        oder
+        = link_to 'Extras bearbeiten', [category,:extras], :remote => true, :class => "button"
+

@@ -1,0 +1,65 @@
+- title "Imprint"
+
+.inputs
+  %table
+    %tr
+      %td Adresse
+      %td
+        = @store.name
+        %br= "Inh. #{@store.owner}"
+        %br= @store.street
+        %br= @store.address(:postcode_city)
+        %br= @store.supervisory_authority
+        - if @store.tax_number?
+          %br= "Steuernummer: #{@store.tax_number}"
+    %tr
+      %td Liefergebiete
+      %td= @store.zones.group(:postcode).order(:postcode).map(&:postcode).join(', ')
+
+    - if @store.minimum_order_value
+      %tr
+        %td Mindestbestellwert
+        %td= to_money(@store.minimum_order_value)
+    %tr
+      %td Öffnungszeiten
+      %td
+        %table.list
+          %tr{ :class => (Time.now.day == 6)? "current" : nil }
+            %td Montag
+            %td= @store.store_hours.opening_from_till_on(:monday).join(', ').html_safe
+          %tr{ :class => (Time.now.day == 7)? "current" : nil }
+            %td Dienstag
+            %td= @store.store_hours.opening_from_till_on(:tuesday).join(', ').html_safe
+          %tr{ :class => (Time.now.day == 1)? "current" : nil }
+            %td Mittwoch
+            %td= @store.store_hours.opening_from_till_on(:wednesday).join(', ').html_safe
+          %tr{ :class => (Time.now.day == 2)? "current" : nil }
+            %td Donnerstag
+            %td= @store.store_hours.opening_from_till_on(:thursday).join(', ').html_safe
+          %tr{ :class => (Time.now.day == 3)? "current" : nil }
+            %td Freitag
+            %td= @store.store_hours.opening_from_till_on(:friday).join(', ').html_safe
+          %tr{ :class => (Time.now.day == 4)? "current" : nil }
+            %td Samstag
+            %td= @store.store_hours.opening_from_till_on(:saturday).join(', ').html_safe
+          %tr{ :class => (Time.now.day == 5)? "current" : nil }
+            %td Sonntag
+            %td= @store.store_hours.opening_from_till_on(:sunday).join(', ').html_safe
+          %tr
+            %td Feiertags
+            %td= @store.store_hours.opening_from_till_on(:holiday).join(', ').html_safe
+
+
+    %tr
+      %td Küchenangebot
+      %td= @store.tags.map(&:name).join(', ')
+    %tr
+      %td Telefon
+      %td= @store.phone
+    %tr
+      %td Telefax
+      %td= @store.fax
+    %tr
+      %td Email
+      /%td= mail_to @store.user.email, "Email an #{current_store.name} #{current_store.name}", :encode => :javascript
+

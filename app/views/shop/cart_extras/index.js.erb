@@ -1,0 +1,34 @@
+var extras_container = $('#<%= dom_id(@cart_article,:cart_extras) %>');
+
+if( $(extras_container).is(':hidden') ) {
+  var was_hidden = true
+} else {
+  var was_hidden = false
+}
+
+$('.cart_extras_cart_article').hide();
+
+var extras_container = $('#<%= dom_id(@cart_article,:cart_extras) %>');
+if ($(extras_container).length == 0) {
+  $('#<%= dom_id(@cart_article) %>').after('<%= escape_javascript(render("index")) %>');
+  $('#<%= dom_id(@cart_article,:cart_extras) %>').show();
+} else {
+  if( was_hidden ) {
+    $(extras_container).show();
+  } else {
+    $(extras_container).hide();
+  }
+}
+
+$('.close_extras').live('click', function(e) {
+  $('.cart_extras_cart_article').hide();
+  e.preventDefault();
+});
+
+
+  //$('#<%= dom_id(@cart_article,:cart_extras) %> a.close_extras').css({ top: containerPosition.top + 10, left: containerPosition.left + 10 });
+  //css({ top:  10, right:  10 });
+
+  // container = $('#<%= dom_id(@cart_article,:cart_extras) %>').position();
+  // $(elementToSet).css({ top: containerPosition.top + 10, left: containerPosition.left + 10
+  // a.text($('#<%= dom_id(@cart_article,:cart_extras) %> a.close_extras').position().top);

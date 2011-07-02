@@ -1,0 +1,19 @@
+= form_for(@user_address) do |f|
+  .inputs
+    = f.input :company
+    = f.input :department
+
+    = f.input :first_name
+    = f.input :last_name
+
+    = f.input :street
+
+    = f.input :postcode
+    = f.input :city
+
+    = f.input  :address_details, :class => 'small'
+
+    = f.input :phone
+
+  .actions
+    = f.button :submit

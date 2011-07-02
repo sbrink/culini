@@ -1,0 +1,27 @@
+- title "Registrierung"
+
+= image_tag("/system/images/woman_menu2.jpg", :style => "float:right")
+
+%p
+  Registrieren Sie sich hier als
+  %strong Besteller
+  oder
+  %strong Lieferservice / Gastronom.
+
+%ul
+  %li Für Besteller sind alle Funktionen kostenlos!
+  %li
+    Gastronomen können ihre Speisekarte kostenlos online stellen,
+    = link_to "Zusatzoptionen", page_path('shop_prices'), :remote => true
+    sind kostenplichtig
+
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  .inputs
+    = f.input :email, :focus => true
+    = f.input :password
+    = f.input :password_confirmation
+    = f.input :terms_of_service, :as => :boolean
+
+  .actions= f.submit "Anmelden", :class => "button"
+
+= render "devise/shared/links"

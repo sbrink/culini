@@ -1,0 +1,37 @@
+de:
+  errors:
+    messages:
+      not_found: "nicht gefunden"
+      already_confirmed: "wurde schon aktiviert"
+
+  devise:
+    failure:
+      unauthenticated: 'Sie müssen sich einloggen, bevor sie fortfahren können.'
+      unconfirmed: 'You have to confirm your account before continuing.'
+      locked: 'Ihr Konto ist gesperrt.'
+      invalid: 'Ungültige Email-Adresse oder Passwort.'
+      invalid_token: 'Invalid authentication token.'
+      timeout: 'Ihre Sitzung ist abgelaufen, bitte loggen Sie sich erneut ein, um fortzufahren.'
+      inactive: 'Your account was not activated yet.'
+    sessions:
+      signed_in: 'Erfolgreich eingeloggt.'
+      signed_out: 'Erfolgreich ausgeloggt.'
+    passwords:
+      send_instructions: 'In Kürze erhalten Sie eine Email mit Informationen, wie Sie ihr Passwort zurücksetzen können.'
+      updated: 'Ihr Passwort wurde erfolgreich geändert. Sie sind jetzt eingeloggt.'
+    confirmations:
+      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+      confirmed: 'Your account was successfully confirmed. You are now signed in.'
+    registrations:
+      signed_up: 'Sie haben sich erfolgreich angemeldet.'
+      updated: 'Sie haben Ihre Daten erfolgreich aktualisiert.'
+      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+    omniauth_callbacks:
+      success: 'Erfolgreich autorisiert über %{kind}.'
+      failure: 'Sie konnten nicht über %{kind} autorisiert werden. Grund: "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        subject: 'Kontobestätigung'
+      reset_password_instructions:
+        subject: 'Passwort zurücksetzen'
+

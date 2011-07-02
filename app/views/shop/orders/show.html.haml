@@ -1,0 +1,44 @@
+- title "Order from %{order_at}", :order_at => @order.created_at.to_s(:short)
+
+%h3 Lieferung an:
+
+%p
+  - if @order.company?
+    = @order.company_with_department
+    %br/
+  %strong= @order.full_name
+  %br= @order.street
+  %br= @order.address(:postcode_city)
+  - if @order.address_details?
+    %br/
+    = @order.address_details
+  - if @order.email?
+    %br= @order.email
+
+%h3 Bestellung
+%table.list
+  %tr
+    %th
+    %th Name
+    %th Einzelpreis
+    %th Gesamtpreis
+  - @order.order_articles.each do |order_article|
+    %tr
+      %td= order_article.quantity
+      %td= order_article.name
+      %td= to_money order_article.price
+      %td= to_money order_article.total_price
+    - order_article.order_extras.each do |order_extra|
+      %tr
+        %td.description
+        %td
+          .description= order_extra.name
+        %td
+          .description= to_money order_extra.price
+        %td
+
+  %tr
+    %td
+    %td Summe
+    %td
+    %td= to_money @order.total_price

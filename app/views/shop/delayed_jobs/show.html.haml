@@ -1,0 +1,23 @@
+- crumb :root, :delayed_jobs, :self
+- title "Delayed job %{id}", :id => @delayed_job.id
+
+%h2= @delayed_job.title
+
+- if @delayed_job.last_error
+  .error
+    %p= @delayed_job.last_error
+
+%p
+  Priority: #{@delayed_job.priority}
+  %br Run at: #{(@delayed_job.run_at < Time.now)? "asap!" : @delayed_job.run_at.to_s(:short)}
+  %br Attempts: #{@delayed_job.attempts}
+  %br Failed at: #{@delayed_job.failed_at}
+  %br locked_at: #{@delayed_job.locked_at}
+  %br created_at: #{@delayed_job.created_at}
+  %br updated_at: #{@delayed_job.updated_at}
+  %br locked_at: #{@delayed_job.locked_at}
+  %br locked_by: #{@delayed_job.locked_by}
+
+%h3 Handler
+
+= debug YAML.load(@delayed_job.handler)

@@ -1,0 +1,14 @@
+- title "Finalize order"
+
+%p.box
+  Sie bestellen
+  %strong #{current_cart.cart_articles.size} Artikel
+  im Wert von
+  %strong #{to_money(current_cart.total_price)}
+
+= render "form"
+
+%p
+  Felder mit
+  %span.required *
+  müssen angegeben werden

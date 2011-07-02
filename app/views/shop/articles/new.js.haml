@@ -1,0 +1,3 @@
+$('##{dom_id(@category,"new_article")}').html('#{escape_javascript(render("form"))}').show();
+$('##{dom_id(@category,"new_article")} .focus').focus();
+$('##{dom_id(@category,"new_article")} #article_description').autoGrow();

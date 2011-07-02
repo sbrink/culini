@@ -1,0 +1,20 @@
+- title "%{name}", :name => @category.name, :hide => true
+
+%h1
+  =  @category.name
+  - if can?(:edit,@category)
+    %span (#{link_to 'Neuer Artikel', [:new,@category,:article], :remote => true} | #{link_to 'Extras bearbeiten', [@category,:extras], :remote => true} | #{link_to "Kategorie bearbeiten", edit_category_path(@category,:except => [:category_image,:import]), :remote => true} | #{link_to image_tag('trash2.png'), @category, :confirm => "Wollen Sie #{@category.name} wirklich löschen?", :method => :delete})
+
+
+= render 'category', :object => @category
+
+- for subcategory in @category.children
+  %a[subcategory]{ :name => dom_id(subcategory) }
+  %h2
+    = subcategory.name
+    - if can?(:edit,subcategory)
+      %span (#{link_to 'Neuer Artikel', [:new,subcategory,:article], :remote => true} | #{link_to 'Extras bearbeiten', [subcategory,:extras], :remote => true} | #{link_to "Kategorie bearbeiten", edit_category_path(subcategory,:except => [:category_image,:import]), :remote => true} | #{link_to image_tag('trash2.png'), subcategory, :confirm => "Wollen Sie #{subcategory.name} wirklich löschen?", :method => :delete})
+
+  = render 'category', :object => subcategory
+
+

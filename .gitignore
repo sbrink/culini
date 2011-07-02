@@ -1,0 +1,10 @@
+.DS_Store
+.project
+.loadpath
+.sass-cache
+
+db/*.sqlite3
+log/*.log
+public/system
+tmp/restart.txt
+tmp/**/*

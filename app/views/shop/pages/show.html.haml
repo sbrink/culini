@@ -1,0 +1,10 @@
+- title "%{name}", :name => @page.name
+
+= @page.body_html.html_safe
+
+.actions
+  = link_to 'Zurück zur Startseite', root_path
+  - if can? :edit, @page
+    |
+    = link_to "bearbeiten", [:edit,@page], :accesskey => 'e'
+

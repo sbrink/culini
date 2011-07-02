@@ -1,0 +1,22 @@
+- if @category.valid?
+  window.location.href = "#{url_for(@category.root)}"
+- else
+  $.facebox('#{escape_javascript(render("form"))}')
+
+
+$('#facebox .focus').focus();
+$("#category_variants_size").change(function () {
+(parseInt($(this).val()) > 1) ? $("#category_variant_2_name").show() : $("#category_variant_2_name").hide();
+(parseInt($(this).val()) > 2) ? $("#category_variant_3_name").show() : $("#category_variant_3_name").hide();
+(parseInt($(this).val()) > 3) ? $("#category_variant_4_name").show() : $("#category_variant_4_name").hide();
+}).change();
+
+$("#category_category_image_id").change(function () {
+if ($(this).val() === "") {
+$('#category_image').removeClass('category_image');
+$('#category_image').css('background-image','');
+} else {
+$('#category_image').addClass('category_image');
+$('#category_image').css('background-image','url(/system/category_images/'+$(this).val()+'/original.jpg)');
+}
+}).change();

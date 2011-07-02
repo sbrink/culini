@@ -1,0 +1,15 @@
+%tr[article]{ :class => cycle(:even,:odd)}
+  %td.code= article.code
+  %td.name
+    .article_name
+      - if can?(:manage,article)
+        = link_to article.name, [:edit,article.category,article], :remote => true
+        &nbsp;
+        = link_to image_tag('trash.png'), [article.category,article], :confirm => "Wollen Sie #{article.name} wirklich löschen?", :method => :delete, :remote => true
+      - else
+        = article.name
+    - if article.description?
+      .description= textilized_lite(article.description)
+
+  - article.article_variants.each do |article_variant|
+    %td.price= article_variant.price ? link_to_add_article(article,article_variant.number) : raw("&nbsp;")

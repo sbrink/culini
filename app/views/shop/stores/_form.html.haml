@@ -1,0 +1,35 @@
+= form_for(@store) do |f|
+  %h2 Adresse / Kontakt
+  .inputs
+    = f.input :name, :span => 6, :focus => true
+    = f.input :owner, :span => 6
+    = f.input :street, :span => 6
+    = f.input :postcode, :span => 2
+    = f.input :city, :span => 6, :append => true
+    = f.input :minimum_order_value
+    = f.input :phone, :span => 4
+    = f.input :fax, :span => 4, :append => true
+    = f.input :tax_number
+    = f.input :supervisory_authority
+    = f.input :reservations_enabled
+
+  %h2 Liefergebiet
+
+  = f.input :delivery_radius, :remote => true
+
+  %h2 Küchenangebot
+
+  - if @store.errors[:tag_ids].present?
+    .error Sie müssen mindestens ein Küchenangebot auswählen
+
+  %table
+    - for tag_row in Tag.ordered.in_groups_of(3)
+      %tr
+        - for tag in tag_row
+          %td
+            - if tag
+              = check_box_tag("store[tag_ids][]",tag.id,@store.tags.include?(tag))
+              %span= tag.name
+
+
+  = f.button :submit

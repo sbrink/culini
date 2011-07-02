@@ -1,0 +1,9 @@
+= form_for(@page) do |f|
+  .inputs
+    = f.input :name, :input_html => { :class => 'focus' }
+    = f.input :handle
+    = f.input :body, :hint => link_to("Textile Reference", "http://redcloth.org/hobix.com/textile/quick.html", :target => "_blank")
+  .actions
+    = f.button :submit
+    or
+    = link_to "Cancel", :pages, :class => 'cancel'

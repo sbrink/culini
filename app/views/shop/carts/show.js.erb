@@ -1,0 +1,21 @@
+$('#cart_articles').html('<%= escape_javascript(render(@cart.cart_articles)) %>')
+
+<% if @cart.cart_articles.any? %>
+  $('#opening_hours').hide();
+  $('#cart_empty').hide();
+  $('#cart').show();
+  $('.checkout').show();
+<% else %>
+  $('#opening_hours').show();
+  $('#cart_empty').show();
+  $('#cart').hide();
+  $('.checkout').hide();
+<% end %>
+
+$('#article_count').html($('.cart_article').length)
+var sum = 0;
+$('.cart_article').each(function(){
+  sum = sum + parseFloat($(this).attr('data-price'))
+});
+$('#cart_sum .price').html(sum.toFixed(2).replace('.', ',')+" &euro;");
+

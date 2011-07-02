@@ -1,0 +1,15 @@
+- title "Extras of %{category_name}", :category_name => @category.name
+
+%h1= yield(:title)
+
+%table
+  %tr
+    %th.code
+    %th Name
+    - @category.category_variants.each do |category_variant|
+      %th.price= category_variant.name
+  %tbody[@category,"extras"]= render @extras
+  %tbody[@category,"new_extra"]
+
+.actions
+  = link_to 'Neues Extra', [:new,@category,:extra], :remote => true, :class => "button new"

@@ -1,0 +1,8 @@
+= form_for(@category_image, :html => { :multipart => true }) do |f|
+  .inputs
+    = f.association :category_image_group, :include_blank => false
+    = f.input :name
+    = f.input :image
+  .actions
+    = f.button :submit
+

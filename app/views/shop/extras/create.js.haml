@@ -1,0 +1,9 @@
+- if @extra.valid?
+  $('#{escape_javascript(render(@extra))}').appendTo('##{dom_id(@category,"extras")}').hide().fadeIn('slow');
+  - @extra = @category.extras.new_with_guess_extra_code
+  $('##{dom_id(@category,"new_extra")}').html('#{escape_javascript(render("form"))}').show();
+- else
+  $('##{dom_id(@category,"new_extra")}').html('#{escape_javascript(render("form"))}').show();
+
+
+$('##{dom_id(@category,"new_extra")} .focus').focus();

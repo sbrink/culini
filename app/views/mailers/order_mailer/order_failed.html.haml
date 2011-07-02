@@ -1,0 +1,11 @@
+%h2 Bestellung fehlgeschlagen
+
+Leider konnte ihre Bestellung nicht übermittelt werden.
+Bitte melden sie sich telefonisch bei #{@order.store.name} unter #{@order.store.phone}.
+
+%h3 Lieferservice:
+
+%p
+  #{@order.store.name}, #{@order.store.city}, #{@order.store.street}
+  %br Tel. #{@order.store.phone}, Fax #{@order.store.fax}
+  %br Bestellt am #{l @order.created_at}

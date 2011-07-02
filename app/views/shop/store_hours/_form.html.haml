@@ -1,0 +1,34 @@
+= form_for(@store_hour) do |f|
+  .inputs
+    %p Geben Sie zuerst eine Öffnungszeit an und wählen Sie dann die Tage aus, an denen diese gilt.
+
+
+
+    %p
+      von&nbsp;
+      = f.time_select :opening_from, {:minute_step => 5}
+      &nbsp; bis &nbsp;
+      = f.time_select :opening_till, {:minute_step => 5}
+
+
+    = link_to_function "Jeden Tag", "check_days('store_hour','all');"
+    = link_to_function "Werktags", "check_days('store_hour','workday');"
+    = link_to_function "Wochenende", "check_days('store_hour','weekend');"
+
+    %p
+    %table
+      %tr
+        %td{ :width => "20%" }
+          = f.input :monday
+          = f.input :tuesday
+          = f.input :wednesday
+          = f.input :thursday
+          = f.input :friday
+        %td{ :width => "20%" }
+          = f.input :saturday
+          = f.input :sunday
+          = f.input :holiday
+        %td
+
+
+  .actions= f.button :submit

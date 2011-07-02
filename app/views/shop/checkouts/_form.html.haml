@@ -1,0 +1,22 @@
+= form_for(@order, :url => :checkout) do |f|
+  .inputs
+    = f.input :company
+    = f.input :department
+
+    = f.input :first_name, :input_html => { :class => 'focus' }
+    = f.input :last_name
+
+    = f.input :street
+
+    = f.input :postcode, :maxlength => 5
+    = f.input :city
+
+    = f.input :address_details, :as => :text, :input_html => { :rows => 1 }
+
+    = f.input :phone
+    = f.input :email
+
+  %p.clear
+    = f.submit 'Jetzt bestellen', :disable_with => "Bestellung wird gesendet...", :append => true
+    oder
+    = link_to "Warenkorb löschen", cart_path, :confirm => 'Are you sure?', :method => :delete

@@ -1,0 +1,34 @@
+= form_for(@category, :remote => true) do |f|
+  = hidden_field_tag :only, params[:only]
+  = hidden_field_tag :except, params[:except]
+  .inputs
+    = f.input :relevant_to_delivery_costs if @category.store.order_enabled? && param_filter(:costs)
+    = f.input :name, :input_html => { :class => 'focus' } if param_filter(:name)
+    = f.input :description, :input_html => { :rows => 1, :cols => 129 } if param_filter(:description)
+
+    /= f.input :import, :as => :text if param_filter(:import)
+
+    //= debug ActiveSupport::JSON.decode('{ "fds": "fds"}')
+    - if param_filter(:variants)
+      = f.label :variants_size
+      = image_tag('examples/category_variants.png')
+      = f.input :variants_size, :collection => [["Nur eine Größe",1],["2 Größen (z.B. normal, groß)",2],["3 Größen (z.B. klein, mittel, groß)",3],["4 Größen (z.B. klein, mittel, groß, blech)",4]], :include_blank => false, :label => false
+      %table
+        %tr
+          %td
+            = f.input :variant_1_name, :label => false, :wrapper_html => { :style => "float:left;" }
+            = f.input :variant_2_name, :label => false, :wrapper_html => { :style => "float:left;" }
+            = f.input :variant_3_name, :label => false, :wrapper_html => { :style => "float:left;" }
+            = f.input :variant_4_name, :label => false, :wrapper_html => { :style => "float:left;" }
+
+    = f.association :parent, :collection => current_store.categories.roots.without(@category.id), :include_blank => true if param_filter(:parent)
+    - if param_filter(:category_image)
+      = f.label :category_image
+      = f.grouped_collection_select(:category_image_id, CategoryImageGroup.ordered.all, :category_images, :name, :id, :name, :include_blank => true)
+      = f.hint :category_image
+      #category_image{ :style => "height: 200px;"}
+
+  .actions
+    = f.button :submit
+    oder
+    = link_to_function "Abbruch", "$(document).trigger('close.facebox')", :class => "cancel"

@@ -1,0 +1,10 @@
+%tr[@cart_article,:cart_extras]
+  %td
+  %td{:colspan => 3}
+    = link_to image_tag('cross.png'), "#", :class => 'close_extras'
+
+    %table
+      - @cart_article.category.extras.each do |extra|
+        %tr
+          %td= link_to extra.name, cart_article_cart_extras_path(@cart_article, :extra =>{:id => extra.id}), :method => :post, :remote => true
+          %td= to_money(extra.price(@cart_article.variant))

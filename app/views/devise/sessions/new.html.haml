@@ -1,0 +1,12 @@
+- breadcrumb
+- title "Einloggen"
+
+= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  .inputs
+    = f.input :email, :focus => true
+    = f.input :password
+    = f.input :remember_me, :as => :boolean
+  .actions
+    = f.submit "Einloggen", :class => 'button'
+
+= render "devise/shared/links"

@@ -1,0 +1,43 @@
+- title "Reservations"
+
+%h2 Kommende Reservierungen
+%table.list
+  %tr
+    %th Datum
+    %th Zeit
+    %th Gäste
+    %th Name
+    %th Telefon
+    %th Email
+    %th
+  - @reservations.future.each do |reservation|
+    %tr[reservation]{ :class => cycle(:even,:odd)}
+      %td= link_to l(reservation.booked_on), [:edit,reservation]
+      %td= reservation.booked_from.to_s(:time)
+      %td= reservation.number_of_guests
+      %td= reservation.full_name
+      %td= reservation.phone
+      %td= reservation.email
+      %td.icon= link_to image_tag('trash.png'), reservation, :confirm => 'Sind Sie sicher?', :method => :delete
+
+
+%h2 Archiv
+%table.list
+  %tr
+    %th Datum
+    %th Zeit
+    %th Gäste
+    %th Name
+    %th Telefon
+    %th Email
+    %th
+  - @reservations.past.each do |reservation|
+    %tr[reservation]{ :class => cycle(:even,:odd)}
+      %td= l(reservation.booked_on)
+      %td= reservation.booked_from.to_s(:time)
+      %td= reservation.number_of_guests
+      %td= reservation.full_name
+      %td= reservation.phone
+      %td= reservation.email
+
+%p= link_to_new Reservation, [:new_reservation]

@@ -1,0 +1,9 @@
+- if @article.valid?
+  $('#{escape_javascript(render(@article))}').appendTo('##{dom_id(@category,"articles")}').hide().fadeIn('slow');
+  - @article = @category.articles.new_with_guess_article_code
+  $('##{dom_id(@category,"new_article")}').html('#{escape_javascript(render("form"))}').show();
+- else
+  $('##{dom_id(@category,"new_article")}').html('#{escape_javascript(render("form"))}').show();
+
+
+$('##{dom_id(@category,"new_article")} .focus').focus();

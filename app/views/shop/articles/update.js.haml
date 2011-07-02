@@ -1,0 +1,6 @@
+- if @article.valid?
+  ccc = $('##{dom_id(@article)}').attr('class');
+  $('##{dom_id(@article)}').replaceWith('#{escape_javascript(render(@article))}');
+  $('##{dom_id(@article)}').removeClass("even").addClass(ccc);
+- else
+  $('##{dom_id(@article)}').html('#{escape_javascript(render("form"))}')

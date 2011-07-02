@@ -1,0 +1,3 @@
+ccc = $('##{dom_id(@article)}').attr('class');
+$('##{dom_id(@article)}').replaceWith('#{escape_javascript(render(@article))}');
+$('##{dom_id(@article)}').removeClass("even").addClass(ccc);

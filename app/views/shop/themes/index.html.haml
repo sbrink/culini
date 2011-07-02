@@ -1,0 +1,14 @@
+- title "Themes"
+
+%table.list
+  %tr
+    %th Name
+    %th Stylesheet
+    %th
+  - for theme in @themes
+    %tr
+      %td= link_to theme.name, edit_theme_path(theme)
+      %td= theme.stylesheet
+      %td.icon= link_to image_tag('trash.png'), theme, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to_new Theme, new_theme_path

@@ -1,0 +1,26 @@
+- title "Users"
+
+%p
+  = form_tag '', :method => :get do
+    = label_tag :name, 'Suche:'
+    = text_field_tag :q, params[:q], :class => "focus"
+    = submit_tag "Suchen", :class => "button"
+
+%p= paginate @users
+
+%table.list
+  %tr
+    %th Name
+    %th Shops
+    %th Logins
+    %th Letzter Login
+    %th.date Erstellt
+  - @users.each do |user|
+    %tr{ :class => cycle(:odd, :even) }
+      %td= user.email
+      %td= user.stores.map { |store| link_to h(store.name), categories_path(:store_id => store)}.join(', ').html_safe
+      %td= user.sign_in_count
+      %td= time_ago_in_words(user.current_sign_in_at)
+      %td.date= user.created_at.to_s(:short)
+
+%p= paginate @users

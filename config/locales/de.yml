@@ -1,0 +1,122 @@
+de:
+  or: "Oder"
+
+  activerecord:
+    models:
+      article: "Artikel"
+      cart: "Warenkorb"
+      category: "Kategorie"
+      category_image: "Kategoriebild"
+      delivery_zone: "Liefergebiet"
+      page: "Seite"
+      reservation: "Reservierung"
+      store: "Shop"
+      store_hour: "Öffnungszeit"
+      user: "Benutzerkonto"
+      user_address: Lieferadresse
+    errors:
+      messages:
+        record_invalid: "Gültigkeitsprüfung ist fehlgeschlagen: %{errors}"
+        not_in_delivery_radius: "nicht im Liefergebiet"
+
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} wurde erfolgreich erstellt."
+      update:
+        notice: "%{resource_name} wurde erfolgreich aktualisiert."
+      destroy:
+        notice: "%{resource_name} wurde erfolgreich gelöscht."
+        alert: "%{resource_name} konnte nicht gelöscht werden."
+    reservations:
+      create:
+        notice: "%{resource_name} erfolgreich aufgenommen."
+    user_addresses:
+      set_as_default:
+        notice: "%{resource_name} wurde erfolgreich als Standard gesetzt."
+
+  views:
+    pagination:
+      previous: "&laquo; Zurück"
+      next: "Vor &raquo;"
+      truncate: "..."
+    store:
+      edit_store: "Shopdaten verändern"
+      edit_design: "Design fuer Speisekarte wählen"
+      edit_store_hours: "Öffnungszeiten festlegen"
+
+  helpers:
+    new: "%{model} hinzufügen"
+    submit:
+      create: "%{model} erstellen"
+      update: "%{model} speichern"
+
+  simple_form:
+    hints:
+      category:
+        name: "z.B. Pizza, Pasta, Burger, Getränke"
+        description: "z.B. jede Pizza mit Tomatesoße, Gouda und Oregano"
+        relevant_to_delivery_costs: "(Entscheidet, ob Artikel in dieser Kategorie zum Mindestbestellwert zählen.)"
+        variants_size: "z.B. klein (20cm), mittel (28cm), groß (36cm)"
+        parent: "Legt diese Kategorie als Unterkategorie an, z.B. Vegetarisch als Unterkategorie von Pizza."
+        category_image: "<- Wählen Sie ein Bild aus"
+
+    labels:
+      category:
+        description: "Zusätzliche Informationen"
+      variants_size: "Größen"
+      name: "Name"
+      parent: "Unterkategorie von"
+      description: "Beschreibung"
+      street: "Straße"
+      postcode: "PLZ"
+      city: "Stadt"
+      phone: "Telefon"
+      fax: "Fax"
+      tax_number: "Steuernummer"
+      password: "Passwort"
+      password_confirmation: "Passwortbestätigung"
+      current_password: "Aktuelles Passwort"
+      delivery_radius: "Lieferradius (km)"
+      owner: "Inhaber"
+      phone: "Telefon"
+      fax: "Fax"
+      tax_number: "Steuernummer"
+      supervisory_authority: "Aufsichtsbehörde"
+      remember_me: "Angemeldet bleiben"
+      company: "Firma"
+      department: "Abteilung"
+      first_name: "Vorname"
+      last_name: "Nachname"
+      phone_area_code: "Vorwahl"
+      phone_local_number: "Telefon-Nr."
+      address_details: "Hinterhof / Etage / etc."
+      code: "Artikel-Nr."
+      minimum_order_value: "Mindestbestellwert"
+      relevant_to_delivery_costs: "Lieferkostenrelevant"
+      opening_from: "Von"
+      opening_till: "Bis"
+      monday: "Montag"
+      tuesday: "Dienstag"
+      wednesday: "Mittwoch"
+      thursday: "Donnerstag"
+      friday: "Freitag"
+      saturday: "Samstag"
+      sunday: "Sonntag"
+      holiday: "Feiertag"
+      number_of_guests: "Gästeanzahl"
+      booked_on: "Datum"
+      booked_from: "Uhrzeit"
+      terms_of_service: "Ich akzeptiere die Nutzungsbedingungen"
+      reservations_enabled: "Reservierungssystem aktivieren?"
+      delete_header: "Kopfzeile löschen?"
+      order_enabled: "Bestellungssystem aktivieren?"
+      email_notification_enabled: "Benachrichtungen per Email"
+      email_notification_address: "Email-Benachrichtungsadresse"
+      fax_notification_enabled: "Benachrichtungen per Fax"
+      category_image: Kategoriebild
+      public_access: Öffentlich erreichbar?
+
+  order_mailer:
+    order_confirmation:
+      subject: "Bestellbestätigung"

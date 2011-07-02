@@ -1,0 +1,30 @@
+- title "Store hours"
+
+%p Legen Sie hier Ihre Öffnungszeiten fest. Klicken Sie dazu unten auf den Link "Neue Öffnungszeit".
+
+%h2 Öffnungszeiten
+%table.list
+  %tr
+    %th Montag
+    %th Dienstag
+    %th Mittwoch
+    %th Donnerstag
+    %th Freitag
+    %th Samstag
+    %th Sonntag
+    %th Feiertags
+    %th
+  - @store_hours.each do |store_hour|
+    %tr
+      %td= link_to(store_hour.opening_from_till, [:edit,store_hour]) if store_hour.on?(:monday)
+      %td= link_to(store_hour.opening_from_till, [:edit,store_hour]) if store_hour.on?(:tuesday)
+      %td= link_to(store_hour.opening_from_till, [:edit,store_hour]) if store_hour.on?(:wednesday)
+      %td= link_to(store_hour.opening_from_till, [:edit,store_hour]) if store_hour.on?(:thursday)
+      %td= link_to(store_hour.opening_from_till, [:edit,store_hour]) if store_hour.on?(:friday)
+      %td= link_to(store_hour.opening_from_till, [:edit,store_hour]) if store_hour.on?(:saturday)
+      %td= link_to(store_hour.opening_from_till, [:edit,store_hour]) if store_hour.on?(:sunday)
+      %td= link_to(store_hour.opening_from_till, [:edit,store_hour]) if store_hour.on?(:holiday)
+      %td.icon= link_to image_tag('trash2.png'), store_hour, :confirm => 'Sind Sie sicher?', :method => :delete
+
+
+%p= link_to_new StoreHour, [:new_store_hour]

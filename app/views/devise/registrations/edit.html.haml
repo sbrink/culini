@@ -1,0 +1,45 @@
+- crumb :root, :"user_registration.edit"
+- title "My Account"
+
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+  .inputs
+    = f.input :email, :input_html => { :class => "focus" }
+    = f.input :password
+    = f.input :password_confirmation
+  .actions
+    = f.button :submit
+
+%h2 Lieferadressen
+- current_user.user_addresses.each do |user_address|
+  %div.box.span-6
+    - if user_address.company.present?
+      = user_address.company_with_department
+      %br
+    %strong= user_address.full_name
+    = "(Standard)" if user_address.first?
+    %br= user_address.street
+    %br= user_address.address(:postcode_city)
+    %br= user_address.phone
+
+%p.clear= link_to "Lieferadressen bearbeiten", [:user_addresses]
+
+%h2 Meine Shops
+
+- if current_user.stores.any?
+  %table.list
+    %tr
+      %th
+      %th Öffnungszeiten
+      %th
+      %th Tischreservierung
+    - current_user.stores.each do |store|
+      %tr
+        %td
+          = link_to store.name, categories_path(:store_id => store)
+          %br
+          = store.street
+          %br
+          = store.address(:postcode_city)
+        %td= store.store_hours.opening_from_till_on(Time.now.strftime("%A").downcase).join('<br>').html_safe
+        %td= store.tags.map(&:name).join(', ')
+        %td= image_tag('accept.png') if store.reservations_enabled?

@@ -1,0 +1,16 @@
+- title "Kategoriebilder"
+
+%p= link_to_new CategoryImage, [:new,:category_image]
+
+- @category_image_groups.each do |category_image_group|
+  %h2= category_image_group.name
+
+  .thumb_container
+    - category_image_group.category_images.each do |category_image|
+      .category_image_thumb
+        = link_to image_tag(category_image.image.url(:thumb)), [:edit,category_image]
+        %br
+        = link_to category_image.name, [:edit,category_image]
+        = link_to image_tag('trash.png'), category_image, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to_new CategoryImage, [:new,:category_image]

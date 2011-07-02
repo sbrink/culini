@@ -1,0 +1,53 @@
+#dialog
+  table
+    width: 100%
+    margin: 0 0 1.5em 0
+    tr.even
+      background-color: #eee
+    a
+      text-decoration: none
+      border-bottom: 1px dotted
+      color: #333
+      border-color: #333
+      &:hover
+        color: #666
+    th, td
+      vertical-align: top
+      padding: 0.2em 0.4em
+      &.code
+        text-align: right
+        width: 20px
+    th
+      border-bottom: 1px solid #eee
+      &.price
+        text-align: right
+        width: 7em
+      .description
+        font-weight: normal
+        font-size: 80%
+        margin: 0
+        padding: 0
+      &.date
+        text-align: right
+    td
+      &.name
+        font-weight: bold
+      .description
+        color: #666
+        font-weight: normal
+        font-size: 90%
+        margin: 0
+        padding: 0
+      &.date
+        text-align: right
+      &.reorder
+        width: 8px
+        cursor: url(/cursors/openhand.cur), default !important
+        &:hover
+          background: url(/images/grippy.png) no-repeat 4px 50%
+      &.color
+        text-align: center
+        width: 115px
+      &.price, &.sum
+        text-align: right
+        width: 7em

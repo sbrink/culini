@@ -1,0 +1,20 @@
+- title "Orders"
+
+%p Ihre zuletzt eingegangen Bestellungen.
+%table.list
+  %tr
+    %th Bestellt von
+    %th.price Wert
+    %th Artikel
+    %th.date Zeit
+  - @orders.each do |order|
+    %tr[order]{:class => cycle(:even,:odd)}
+      %td
+        = link_to order.full_name, order
+        //= link_to "(email)", [:preview,order], :target => :_new
+      %td.price= to_money(order.total_price)
+      %td= order.order_articles.size.to_s + " Artikel"
+      %td.date= "vor " + time_ago_in_words(order.created_at)
+
+= paginate(@orders)
+

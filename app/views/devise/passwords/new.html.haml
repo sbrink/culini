@@ -1,0 +1,9 @@
+- title "Passwort vergessen"
+
+= form_for(resource, :as => resource_name, :url => password_path(resource_name)) do |f|
+  .inputs
+    = f.input :email
+  .actions
+    = f.submit "Rücksetzung des Passworts anfordern"
+
+= render "devise/shared/links"

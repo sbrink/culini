@@ -1,0 +1,18 @@
+# allow_mass_assignment_of
+# allow_value
+# ensure_inclusion_of
+# ensure_length_of
+# have_and_belong_to_many
+# have_db_column
+# have_db_index
+# have_readonly_attribute
+
+# belong_to
+# have_many
+# have_one
+  
+# validate_acceptance_of
+# validate_format_of
+# validate_numericality_of
+# validate_presence_of
+# validate_uniqueness_of

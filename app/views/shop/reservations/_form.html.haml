@@ -1,0 +1,14 @@
+= form_for(@reservation) do |f|
+  .inputs
+    = f.label :booked_on
+    = f.hidden_field  :booked_on
+    #datepicker
+    = f.input :booked_from, {:minute_step => 30}
+
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :phone
+    = f.input :email
+    = f.input :number_of_guests, :collection => 1..6, :include_blank => false
+  .actions
+    = f.button :submit

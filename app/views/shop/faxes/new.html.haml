@@ -1,0 +1,8 @@
+- title "New fax"
+
+Hiermit können Sie ein Testfax senden.
+= link_to 'Testfax verschicken', faxes_path, :method => :post
+
+= @p
+
+= "store_#{@order.store.id.to_s};order_#{@order.id.to_s}"

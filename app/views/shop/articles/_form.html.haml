@@ -1,0 +1,38 @@
+%td.code
+%td{ :colspan => 2+@category.category_variants.size}
+  = form_for([@article.category, @article], :remote => true) do |f|
+    .inputs
+      = f.input :code, :input_html => { :class => (@article.category.last_article.try(:code?))? 'focus' : nil, :tabindex => 1 }
+      = f.input :name, :hint => "z.B. Pizza Magaritha", :input_html => { :class => (@article.category.last_article.try(:code?))? nil : 'focus', :tabindex => 2 }
+      = f.input :description, :as => :text, :input_html => { :rows => 1, :cols => 119, :tabindex => 3 }, :hint => "z.B. mit Tomatensoße und Käse"
+
+    .inputs
+      %strong Preis: &nbsp; &nbsp;
+      - if @article.category.category_variants.size >= 1
+        = @article.category.category_variants[0].name
+        = f.text_field :variant_1_price, :size => 7, :tabindex => 4
+        &nbsp;
+      - if @article.category.category_variants.size >= 2
+        = @article.category.category_variants[1].name
+        = f.text_field :variant_2_price, :size => 7, :tabindex => 5
+        &nbsp;
+      - if @article.category.category_variants.size >= 3
+        = @article.category.category_variants[2].name
+        = f.text_field :variant_3_price, :size => 7, :tabindex => 6
+        &nbsp;
+      - if @article.category.category_variants.size >= 4
+        = @article.category.category_variants[3].name
+        = f.text_field :variant_4_price, :size => 7, :tabindex => 7
+      - if @article.category.category_variants.size > 1
+        = link_to "Größen verändern", edit_category_path(@article.category,:only => [:variants]), :remote => true
+      - else
+        = link_to "Größen hinzufügen", edit_category_path(@article.category,:only => [:variants]), :remote => true
+
+    .actions
+      = f.button :submit, :tabindex => 8
+      oder
+      - if @article.new_record?
+        = link_to_function "Abbruch", "$('##{dom_id(@category,"new_article")}').hide();", :class => "cancel"
+      - else
+        = link_to "Abbruch", [@article.category, @article], :remote => true, :class => "cancel"
+

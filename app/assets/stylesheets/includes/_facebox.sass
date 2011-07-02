@@ -1,0 +1,136 @@
+#facebox
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 9999
+  text-align: left
+  .b
+    background: url(/images/b.png)
+  .tl
+    background: url(/images/fbx-border-sprite.png) 0 0
+    width: 10px
+    height: 10px
+  .tr
+    background: url(/images/fbx-border-sprite.png) -10px 0
+    width: 10px
+    height: 10px
+  .bl
+    background: url(/images/fbx-border-sprite.png) -20px 0
+    width: 10px
+    height: 10px
+  .br
+    background: url(/images/fbx-border-sprite.png) -30px 0
+    width: 10px
+    height: 10px
+  .popup
+    position: relative
+  .cart_extra
+    border-bottom: 1px solid #f1f1f1
+  table
+    border-collapse: collapse
+    /* ie 6 hack -- if the global table width is set to anything it could cause us issues
+    -width: 0%
+  td
+    border-bottom: 0
+    padding: 0
+  .body
+    padding: 10px
+    background: #fff
+    width: 600px
+  .loading, .image
+    text-align: center
+  img
+    border: 0
+    margin: 0
+  .footer
+    border-top: 1px solid #DDDDDD
+    padding-top: 5px
+    margin-top: 10px
+    text-align: right
+    img
+      vertical-align: middle
+  .tl, .tr, .bl, .br
+    height: 10px
+    width: 10px
+    overflow: hidden
+    padding: 0
+    
+  h1
+    border-bottom: 1px solid #eee
+    text-align: center
+    font-size: 120%   
+  h2
+    text-align: center
+    font-size: 120%   
+    padding: 4px
+    border-bottom: 1px solid #eee
+    margin-bottom: 0.5em
+    
+  table
+    position: relative
+    margin: 0 0 0.6em 0
+    width: 100%
+    th, td
+      vertical-align: top
+      padding: 0.2em 0.4em
+      a
+        color: #bb0000
+      &.price
+        text-align: right
+        width: 45px
+      &.quantity
+        width: 15px
+      &.delete
+        width: 20px
+    th
+      background-color: #999
+      color: #fff
+      text-align: left
+      font-weight: bold
+      border-right: 1px solid #ccc
+    td
+      .description
+        font-size: 90%
+        margin: 0
+        padding: 0
+      .name, .article_name
+        font-weight: bold
+      &.quantity, &.name_and_extras, &.price, &.delete
+        border-bottom: 1px solid darken(#ccc,8%)
+        border-right: 1px solid darken(#ccc,3%)
+      &.delete
+        background: url(/images/trash2.png) no-repeat 50%
+        cursor: pointer
+      &.price
+        background-color: #ccc
+      &.extra_list
+        border-bottom-width: 1px
+        border-bottom-style: solid
+      &.add_extras
+        border-bottom-width: 1px
+        border-bottom-style: solid
+        text-align: right
+      &.empty
+        text-align: center
+        padding: 8px
+        font-weight: bold
+    
+
+#facebox_overlay
+  position: fixed
+  top: 0px
+  left: 0px
+  height: 100%
+  width: 100%
+
+.facebox_hide
+  z-index: -100
+
+.facebox_overlayBG
+  background-color: #000
+  z-index: 99
+
+* html #facebox_overlay
+  /* ie6 hack
+  position: absolute
+  height: expression("document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px'")

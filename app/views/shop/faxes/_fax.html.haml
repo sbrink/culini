@@ -1,0 +1,35 @@
+Termin:
+%b sofort
+
+
+%h3 Lieferung an:
+%p
+  = @order.company
+  = @order.department
+  %br/
+  %b= @order.full_name
+  %br/
+  = @order.street
+  %br/
+  = @order.address(:postcode_city)
+
+
+
+%h3 Warenkorb
+%table{:width => '100%'}
+  %tr
+    %th{:align => 'right'} Menge
+    %th{:align => 'left'} Artikel
+    %th{:align => 'right'} EP
+    %th{:align => 'right'} Brutto gesamt
+  - for order_article in @order.order_articles
+    %tr
+      %td{:width => 50, :align => 'right'}= order_article.quantity
+      %td= order_article.name
+      %td{:align => 'right'}= to_money order_article.price
+      %td{:align => 'right'}= to_money order_article.total_price
+  %tr
+    %td
+    %td Summe
+    %td
+    %td{:align => 'right'}= to_money @order.total_price

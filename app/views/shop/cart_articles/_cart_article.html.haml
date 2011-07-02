@@ -1,0 +1,15 @@
+%tr[cart_article]{ "data-price" => cart_article.total_price}
+  %td.quantity
+    = cart_article.quantity
+    //= link_to "", [:inc,cart_article], :method => :put, :class => 'inc', :remote => true
+    //= link_to "", [:dec,cart_article], :method => :put, :class => 'dec', :remote => true
+
+  %td.name_and_extras{ :"data-href" => url_for([:edit,cart_article]) }
+    .name= link_to cart_article.name_with_variant, [:edit,cart_article], :remote => true
+    .extras
+      - if cart_article.cart_extras.empty?
+        = "-"
+      - else
+        = cart_article.cart_extras.map { |a| a.name }.join(", ").html_safe
+  %td.price= to_money(cart_article.total_price)
+  %td.delete{ :"data-method" => :delete, :"data-href" => url_for(cart_article) }

@@ -1,0 +1,65 @@
+!!!
+%html
+  %head
+    %title #{request.host} - Essen bestellen und Tische reservieren
+    = stylesheet_link_tag 'portal'
+    = csrf_meta_tag
+    = meta_tag 'description', "Pizza/Pasta/Asia online bestellen, Restaurants finden, bei Bäckereien vorbestellen, Bio-Bauern in ihrer Nähe finden."
+    = meta_tag 'keywords', "restaurants, pizza, pasta, online bestellen"
+    = meta_tag 'ga-ua', "UA-22691356-1"
+
+  %body
+    .container
+      #header
+        #header_logo= link_to image_tag('culini_logo.png'), root_url
+        #header_image= image_tag('header_image.jpg')
+        #header_session
+          - if user_signed_in?
+            Eingeloggt als
+            = link_to current_user.email, edit_user_registration_path, :title => "Ihr Benutzerkonto"
+            = link_to "Ausloggen", destroy_user_session_path, :class => "special"
+          - else
+            = link_to "Kostenlos anmelden", new_user_registration_path, :title => "Sie sind neu hier?", :class => "register"
+            oder
+            = link_to "Einloggen", new_user_session_path, :class => "signin special"
+
+      #navigation
+        #contact
+          = link_to 'über culini.de', page_url('about')
+          %span= "|"
+          = link_to 'Demo', culini_url("demo")
+          %span= "|"
+          = link_to 'Datenschutz', page_url('privacy')
+          %span= "|"
+          = link_to 'AGB', page_url('terms')
+          %span= "|"
+          = link_to 'Impressum', page_url('imprint')
+        %ul#infos
+          %li
+            = link_to "Für Besteller ▼", "#"
+            %ul
+              %li= link_to "Wie bestelle ich?", page_path("order_how")
+              %li= link_to "Wie reserviere ich einen Tisch?", page_path("reservation_how")
+              %li= link_to "Vorteile als registriertes Mitglied", page_path("customer_benefits")
+          %li
+            = link_to "Für Gastronomen ▼", "#"
+            %ul
+              %li= link_to "Anmeldung", page_path("shop_registration_how")
+              %li= link_to "Voraussetzungen", page_path("shop_prerequisites")
+              %li= link_to "Demoshop", culini_url("demo"), :target => "_new"
+          - if can?(:manage, Page)
+            %li
+              = link_to "Für Superadmins ▼", "#"
+              %ul
+                %li= link_to "Die letzten 10 Shops", search_path(:last => 10)
+                %li= link_to "Benutzerverwaltung", :users
+                %li= link_to "Seitenübersicht", :pages
+                %li= link_to "Kategoriebilder", :category_images
+                %li= link_to "Themes", :themes
+      #flash= flash_messages
+      #content
+        - unless yield(:title).blank?
+          %h1.title= yield(:title)
+        = yield
+
+  = javascript_include_tag "portal"

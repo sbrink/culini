@@ -1,0 +1,24 @@
+- crumb :root, :"user_registration.edit", :self
+- title "User addresses"
+
+%p= link_to_new UserAddress, [:new,:user_address]
+
+- @user_addresses.each do |user_address|
+  %div.box
+    - if user_address.company.present?
+      = user_address.company_with_department
+      %br
+    %strong= user_address.full_name
+    = "(Standard)" if user_address.first?
+    %br= user_address.street
+    %br= user_address.address(:postcode_city)
+    %br= user_address.phone
+    %br
+      = link_to 'Bearbeiten', [:edit,user_address]
+      |
+      = link_to image_tag('trash.png'), user_address, :confirm => 'Are you sure?', :method => :delete
+
+      - if !user_address.first?
+        |
+        = link_to 'Als Standard setzen', [:set_as_default,user_address], :method => :put
+

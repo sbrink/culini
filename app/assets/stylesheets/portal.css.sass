@@ -1,0 +1,298 @@
+@import mixins.sass
+@import reset.sass
+@import forms.sass
+@import tables.sass
+
+//----------------------------------------------------------------------------
+// General
+//----------------------------------------------------------------------------
+body
+  background: #f9f9f9 url(/assets/bg_gradient.png) repeat-x
+  color: #000
+
+.container
+  +border-radius(3px)
+  border: 1px solid #fff
+  width: 980px
+  background: #fff
+  margin: 10px auto
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2)
+
+
+//----------------------------------------------------------------------------
+// Header
+//----------------------------------------------------------------------------
+#header
+  background-color: #fff
+  position: relative
+  height: 108px
+  
+  #header_logo
+    position: absolute
+    left: 30px
+    top: 20px
+    padding: 0
+    margin: 0
+
+  #header_image
+    position: absolute
+    right: 0
+    top: 0
+    padding: 0
+    margin: 0
+
+  #header_session
+    position: absolute
+    text-align: right
+    right: 200px
+    top: 41px
+    img
+      vertical-align: middle
+    
+  a
+    color: #3a73e6
+    padding: 4px 6px 6px
+    text-decoration: none
+    margin-right: 4px
+    &:hover
+      text-decoration: underline
+    &.special
+      font-weight: bold
+      color: #3a73e6
+      position: relative
+      margin-left: 4px
+    &.register
+      +border-radius(8px)
+      text-shadow: 1px 1px 0 #333
+      padding: 8px 12px
+      background: -webkit-gradient(linear,0% 0,0% 100%,from(#97b93f),to(#709f2d))
+      background: -moz-linear-gradient(-90deg,#97b93f,#709f2d)
+      color: #fff
+      position: relative
+      margin-left: 4px
+      &:hover
+        text-decoration: none
+        background: -webkit-gradient(linear,0% 0,0% 100%,from(#a7b93f),to(#809f2d))
+      background: -moz-linear-gradient(-90deg,#a7b93f,#809f2d)
+    &.menu-open
+      background: #ddeef6!important
+      color: #666!important
+      outline: none
+
+
+//----------------------------------------------------------------------------
+// Navigation
+//----------------------------------------------------------------------------
+#navigation
+  position: relative
+  background: #f9f9f9 url(/assets/nav_gradient.png)
+  padding: 7px 32px
+  height: 19px
+  box-shadow: 0 2px 2px #ddd
+  z-index: 1000
+
+  #contact
+    position: absolute
+    top: 7px
+    right: 32px
+    span
+      margin: 0 4px
+      color: #bbb
+    a
+      padding: 9px 0
+      font: Verdana
+      color: #8b8a8a
+      text-decoration: none
+      &:hover
+        text-decoration: underline
+  
+  #infos
+    list-style-type: none
+    position: absolute
+    top: 6px
+    left: 32px
+    li
+      +reset
+      position: relative
+      display: block
+      float: left
+      margin: 0
+      width: 130px
+      z-index: 500
+      a
+        padding: 9px 0
+        text-decoration: none
+        color: #666
+        display: block
+        padding: 2px 4px
+        &.selected
+          color: #333
+    ul
+      +reset
+      border: 1px solid #e9e9e9
+      position: absolute
+      display: none
+      left: 0
+      list-style-type: none
+      li 
+        width: 200px
+        padding: 0
+        a
+          display: block
+          background: #f9f9f9
+          padding: 3px 8px
+          &:hover
+            background: #efefef
+
+
+//----------------------------------------------------------------------------
+// Content
+//----------------------------------------------------------------------------
+#content
+  background: #fff
+  overflow: hidden
+  position: relative
+  padding: 16px 32px
+  
+  #slogan
+    padding: 16px 64px
+    font-size: 18px
+    font-weight: normal
+    text-align: center
+    font-family: Georgia, "Times New Roman"
+    a
+      text-decoration: none
+      color: #333
+
+  #search
+    position: relative
+    border: 1px solid #eee
+    padding: 4px
+    background: url(/assets/search_bg.jpg) no-repeat 4px
+    width: 905px
+    height: 417px
+    margin-bottom: 80px
+    form
+      border: 2px solid #f3f3f3
+      +border-radius(5px)
+      background-color: #fff
+      padding: 8px 12px 12px
+      position: absolute
+      left: 140px
+      top: 72px
+      input[type=text]
+        +border-radius(4px)
+        font-size: 150%
+        border: 1px solid #ccc
+        width: 200px
+        background-color: white
+        padding: 4px 4px
+      input[type=submit]
+        +border-radius(4px)
+        font-size: 150%
+        padding: 2px 1px 2px 4px
+        background-color: #8b1101
+        color: #fff
+        border: 1px solid #8b1101
+        width: 25px
+        text-align: center
+        font-weight: bold
+    h3
+      font-size: 160%
+      margin-bottom: 0.4em
+      span
+        font-size: 60%
+    a
+      font: 0.75em Arial
+      color: #444444
+      line-height: 20px
+
+  h1
+    font-size: 218%
+    color: #333
+    border-bottom: 1px solid #999
+    margin-bottom: 0.5em
+
+  h2
+    font-size: 148%
+    color: #333
+    border-bottom: 1px solid #f1f1f1
+
+  p
+    margin-bottom: 1.0em
+
+  a
+    color: #3a73e6
+
+  .box
+    background-color: #fff
+    border: 1px solid #f1f1f1
+
+  .category_image_thumb
+    width: 200px
+    padding: 4px 8px
+    border: 2px solid #eee
+    text-align: center
+    float: left
+    margin-right: 8px
+    margin-bottom: 8px
+
+
+.flash
+  border-bottom-width: 1px
+  border-bottom-style: solid
+  text-align: center
+  padding: 8px
+  font-size: 110%
+
+.notice
+  background: #FFF6BF
+  color: darken(#514721,10%)
+  border-color: #FFD324
+
+.alert
+  background: #FBE3E4
+  color: #8a1f11
+  border-color: #FBC2C4
+
+/****************************************************************************
+/*** Lists
+/****************************************************************************
+ul
+  list-style-type: square
+  margin-bottom: 16px
+  li
+    margin-left: 16px
+
+//----------------------------------------------------------------------------
+
+.thumb_container
+  width: 100%
+  overflow: hidden  
+
+ul.ui-autocomplete
+  overflow: hidden
+  z-index: 99999
+  border: 1px solid #bbb
+  background-color: #fff
+  list-style: none
+  padding: 0
+  margin: 0
+  width: 250px
+  li
+    margin: 0px
+    text-align: left
+    padding: 0
+    cursor: default
+    font: menu
+    font-size: 12px
+    line-height: 16px
+  a
+    display: block
+    text-decoration: none
+    padding: 2px 4px
+    color: #333
+  .ui-state-hover
+    background-color: #8b1101
+    color: white
+

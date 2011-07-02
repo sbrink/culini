@@ -1,0 +1,40 @@
+= form_for(@store, :url => :info) do |f|
+  .inputs
+    = f.input :public_access
+
+  %h2 Adresse
+  .inputs
+    = f.input :phone
+    = f.input :fax
+    = f.input :tax_number
+    = f.input :supervisory_authority
+
+  %h2 Bestellsystem
+  .inputs
+    = f.input :order_enabled
+    = f.input :email_notification_enabled
+    = f.input :email_notification_address
+    //= f.input :fax_notification_enabled
+    = f.input :minimum_order_value, :input_html =>{ :type => "text", :size => 10 }
+    = f.input :delivery_radius, :input_html =>{ :type => "text", :size => 10 }
+
+  %h2 Reservierungssystem
+  .inputs
+    = f.input :reservations_enabled
+
+  %h2 Küchenangebot (Gibt Kunden eine Schnellübersicht über das, was Sie anbieten.)
+  .inputs
+    %table
+      - for tag_row in Tag.ordered.in_groups_of(3)
+        %tr
+          - for tag in tag_row
+            %td
+              - if tag
+                = check_box_tag("store[tag_ids][]",tag.id,@store.tags.include?(tag))
+                %span= tag.name
+
+  %h2 Webadresse
+  .inputs
+    = f.input :domain
+
+  .actions= f.button :submit

@@ -1,0 +1,125 @@
+!!!
+%html{ "xml:lang" => "de", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %title #{current_store.name} - #{yield(:title)}
+    = stylesheet_link_tag "themes/#{current_store.theme.stylesheet}"
+    //= stylesheet_link_tag "/design/screen.css"
+    //- st = File.open("app/stylesheets/themes/#{current_store.theme.stylesheet}.sass").read
+    //%style
+    //  = Sass::Engine.new(st, :syntax => :sass, :full_exception => true, :load_paths => ["#{Rails.root}/app/stylesheets"]).render
+
+    = csrf_meta_tags
+    = meta_tag "shop_url", root_url
+    = meta_tag 'ga-ua', "UA-22691356-1"
+  %body
+    #wrapper
+      #header
+        #header_address #{link_to("Impressum", :info)} - #{current_store.address(:full," | ")}
+        #header_session
+          - if user_signed_in?
+            -if user_is_admin?
+              = link_to "Verwaltung", :categories
+            Eingeloggt als
+            = link_to current_user.email, edit_user_registration_path, :title => "Ihr Benutzerkonto"
+            = link_to "Ausloggen", destroy_user_session_path, :class => "special"
+          - else
+            = link_to "Registrieren", new_user_registration_path, :title => "Sie sind neu hier?"
+            oder
+            = link_to "Einloggen", new_user_session_path, :class => "signin special"
+
+      #sidebar
+        #cart_and_hours
+          #cart
+            %table
+              %tr
+                %th.quantity
+                %th.name Artikel
+                %th.price Preis
+                %th.options
+              %tbody#cart_empty
+                %tr
+                  %td.empty{ :colspan => 4} Ihr Warenkorb ist leer.
+              %tbody#cart_articles
+              %tbody#cart_mov
+                %tr
+                  %td.empty{ :colspan => 4} Mindestbestellwert nocht nicht erreicht
+              %tbody#cart_sum
+                %tr
+                  %td.quantity
+                  %td.name
+                    %span#article_count 1
+                    Artikel
+                    = link_to "Bestellen", checkout_path, :class => "checkout"
+                  %td.price
+                    0,00 &euro;
+                  %td.options
+
+          #opening_hours
+            %table
+              %tr
+                %th{ :colspan => 2 } Öffnungszeiten
+              %tr{ :class => (Time.now.day == 6)? "current" : nil }
+                %td Montag
+                %td= current_store.store_hours.opening_from_till_on(:monday).join(', ').html_safe
+              %tr{ :class => (Time.now.day == 7)? "current" : nil }
+                %td Dienstag
+                %td= current_store.store_hours.opening_from_till_on(:tuesday).join(', ').html_safe
+              %tr{ :class => (Time.now.day == 1)? "current" : nil }
+                %td Mittwoch
+                %td= current_store.store_hours.opening_from_till_on(:wednesday).join(', ').html_safe
+              %tr{ :class => (Time.now.day == 2)? "current" : nil }
+                %td Donnerstag
+                %td= current_store.store_hours.opening_from_till_on(:thursday).join(', ').html_safe
+              %tr{ :class => (Time.now.day == 3)? "current" : nil }
+                %td Freitag
+                %td= current_store.store_hours.opening_from_till_on(:friday).join(', ').html_safe
+              %tr{ :class => (Time.now.day == 4)? "current" : nil }
+                %td Samstag
+                %td= current_store.store_hours.opening_from_till_on(:saturday).join(', ').html_safe
+              %tr{ :class => (Time.now.day == 5)? "current" : nil }
+                %td Sonntag
+                %td= current_store.store_hours.opening_from_till_on(:sunday).join(', ').html_safe
+              %tr
+                %td Feiertags
+                %td= current_store.store_hours.opening_from_till_on(:holiday).join(', ').html_safe
+
+        #navigation
+          //- if current_store.reservations_enabled?
+          //  #reservation= link_to raw("Zur Tischplatzreservierung &raquo;"), new_reservation_path
+          .group
+            %h1
+              Kategorien
+              - if can?(:create,Category)
+                = link_to "Neue Kategorie", new_category_path(:only => [:name,:description]), :class => "button new", :remote => true
+                //  = link_to 'Import', new_category_path(:only => [:import,:parent]), :remote => true
+            %ul{ :"data-sortable" => "categories", :class => can?(:manage,@category) ? "sortable" : nil}
+              - current_store.categories.ordered.roots.each do |category|
+                %li[category]= link_to_category category, :current_id => @category.try(:id)
+
+          - if user_is_admin?
+            #actions
+              %h1 Verwaltung
+              %ul
+                %li= link_to_edit_store
+                %li= link_to_edit_design
+                %li= link_to_edit_hours
+                %li= link_to_orders
+                - if current_store.reservations_enabled?
+                  %li= link_to_reservations
+
+
+      #content
+        #logo
+          - if current_store.header?
+            = link_to image_tag(current_store.header.url), root_url
+          - else
+            .logo= link_to current_store.name, root_url
+        - if flash[:notice]
+          %p.flash.notice= notice
+        - if flash[:alert]
+          %p.flash.error= flash[:alert]
+        - if @show_title && yield(:title)
+          %h1= yield(:title)
+        = yield
+        .clear
+  = javascript_include_tag "store"

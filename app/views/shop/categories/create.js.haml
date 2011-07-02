@@ -1,0 +1,7 @@
+- if @category.valid?
+  window.location.href = "#{url_for(@category.root)}"
+- else
+  $.facebox('#{escape_javascript(render("form"))}')
+
+
+$('#facebox .focus').focus();

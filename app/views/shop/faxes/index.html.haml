@@ -1,0 +1,20 @@
+- title "Fax status"
+
+%table.list
+  %tr
+    %th.icon
+    %th TransactionID
+    %th Zielnummer
+    %th Betreff
+    %th Gesendet
+    %th Dauer
+    %th Seiten
+  - @fax_items.each do |fax_item|
+    %tr
+      %td= (fax_item.ok)? image_tag('tick.png') : image_tag('cross.png')
+      %td= fax_item.id
+      %td{:title => "CSID: #{fax_item.remote_csid}" }= fax_item.receiver_number
+      %td= fax_item.subject
+      %td= fax_item.submit_time.to_s(:db)
+      %td= fax_item.duration + " Sekunden"
+      %td= fax_item.pages

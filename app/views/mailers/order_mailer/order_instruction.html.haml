@@ -1,0 +1,44 @@
+%h2 Bestellauftrag
+
+%h3 Lieferadresse
+
+%p
+  %strong Telefonnr.:	#{@order.phone}
+  %br Vor- und Nachname:	#{@order.full_name}
+  %br Straße:	#{@order.street}
+  %br PLZ, Ort:	#{@order.address(:postcode_city)}
+  - if @order.address_details?
+    %br Adressenhinweis: #{@order.address_details}
+
+%h3 Bestellung
+
+%table{ :cellpadding => 2}
+  %tr
+    %th{ :style => "width: 50px; text-align: left;" } Anzahl
+    %th{ :style => "width: 375px; text-align: left;" }  Artikel und Extras
+    %th{ :style => "width: 70px; text-align: left;" }  Art.-Nr.
+    %th{ :style => "width: 70px; text-align: right;" }  Einzelpreis
+    %th{ :style => "width: 55px; text-align: right;" }  Summe
+  - @order.order_articles.each do |order_article|
+    %tr
+      %td{ :style => "border-top: 1px solid #ccc" } #{order_article.quantity}x
+      %td{ :style => "border-top: 1px solid #ccc" }= order_article.name
+      %td{ :style => "border-top: 1px solid #ccc" }= order_article.code
+      %td{ :style => "border-top: 1px solid #ccc; text-align: right;" }= to_money order_article.price
+      %td{ :style => "border-top: 1px solid #ccc; text-align: right;" }= to_money order_article.total_price
+    - order_article.order_extras.each do |order_extra|
+      %tr
+        %td
+        %td - #{order_extra.name}
+        %td= order_extra.code
+        %td{ :style => "text-align: right;" }= to_money order_extra.price
+        %td
+  %tr{ :style => "border-top: 1px solid #ccc" }
+    %td{ :style => "border-top: 1px solid #ccc" }
+    %td{ :style => "border-top: 1px solid #ccc" } Gesamtbetrag
+    %td{ :style => "border-top: 1px solid #ccc" }
+    %td{ :style => "border-top: 1px solid #ccc" }
+    %td{ :style => "border-top: 1px solid #ccc;text-align:right;font-weight:bold;" }= to_money @order.total_price
+
+
+%p Dies ist eine automatisch versendete Nachricht.

@@ -1,0 +1,19 @@
+- crumb :root, :self
+- title "Pages"
+
+%table.list
+  %tr
+    %th.name Name
+    %th Permalink
+    %th Body
+    %th Geändert vor
+    %th
+  - @pages.each do |page|
+    %tr
+      %td= link_to page.name, page
+      %td= page.handle
+      %td= page.body
+      %td= time_ago_in_words page.updated_at
+      %td.icon= link_to image_tag('trash.png'), page, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to_new Page, [:new,:page]

@@ -1,0 +1,5 @@
+$('##{dom_id(@article)}').html('#{escape_javascript(render("form"))}')
+$('##{dom_id(@article)} #article_description').autoGrow();
+
+$('##{dom_id(@article)} .focus').focus();
+
